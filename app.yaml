@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/on-clouds/savannah-demo
+    targetRevision: HEAD
+    path: argo
+  destination:
+    server: kubernetes.svc.cluster.local 
+    namespace: argocd
+  syncPolicy:
+    automated:
+      allowEmpty: false
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: "10s"
+        factor: 2
+        maxDuration: "3m"
+      limit: 10
+    syncOptions:
+      - "CreateNamespace=true" # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
