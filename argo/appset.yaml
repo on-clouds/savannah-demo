@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/on-clouds/savannah-demo.git
         revision: HEAD
         files:
-          - path: argo/**/config.yaml
+          - path: argo/**/config-helm.yaml
   template:
     metadata:
       name: '{{path.basename}}'
@@ -40,7 +40,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: platform-kustomize
+  name: apps-kustomize
 spec:
   generators:
     - git:
