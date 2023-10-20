@@ -1,4 +1,0 @@
-repoURL: https://charts.k8sgpt.ai
-targetRevision: 0.0.21
-chart: k8sgpt-operator
-namespace: k8sgpt-operator-system
